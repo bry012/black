@@ -1,0 +1,102 @@
+body {
+	background: url(black_jack/carpet.jpg);
+}
+
+h1 {
+	text-align: center;
+	font-size: 50px;
+	color:white;
+	width:1000px;
+	margin:auto;
+	margin-bottom: 50px;
+	position:relative;
+	right:0.5%;
+	
+}
+
+#table {
+	margin:auto;
+	width: 1000px;
+	height: 400px;
+	background: url(black_jack/felt_table.jpg);
+	border-radius:100px;
+	box-shadow: 
+	0 0 10px 2px black,
+	0 0 0 20px rgb(103,10,10),
+	0 0 10px 25px black;
+
+	
+}
+
+#hit, #start, #stay {
+	width:75px;
+	height:25px;
+	color:rgb(230,230,230);
+	background: rgb(10,10,10);
+	border-radius: 40px;
+	border: 3px solid rgb(100,150,100);
+	margin:10px;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+	right:2%;
+}
+
+#hit:hover, #start:hover, #stay:hover {
+	background: white;
+	border:3px solid rgb(10,10,10);
+	color:rgb(100,150,100);
+}
+
+#scores {
+	float:right;
+	overflow: hidden;
+	
+
+}
+#scores ul, #misc ul {
+	margin:auto;
+	width:200px;
+
+}
+
+#scores li, #misc li{
+	display: inline;
+	font-size:22px;
+	font-weight:bold;
+}
+#sidebar ul {
+	margin:auto;
+	width:1000px;
+	text-align: center;
+}
+
+#sidebar li{
+	display: inline-table;
+	margin:auto;
+}
+
+#dealer-cards, #cards {
+	width:700px;
+	margin-left:30px;
+	margin-right:10px;
+	padding:0px;
+	float:left;
+	overflow: hidden;
+
+}
+
+#dealer-cards img, #cards img {
+	padding:10px;
+}
+
+#misc {
+	height: 30px;
+}
+
+#result {
+	color: white;
+	text-align: center;
+	position:relative;
+	left: 3.5%;
+}
