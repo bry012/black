@@ -1,6 +1,9 @@
 
 var value = [];
+var suit = [];
 var deck = [];
+var face = ["A",2,3,4,5,6,7,8,9,10,"J","Q","K"];
+var type = [];
 var images = [];
 
 
@@ -115,17 +118,22 @@ for(i=1;i<14;i++){
     var val = (i<=10)? i : 10;
     value.push(val,val,val,val);
     }
+for(i=1;i<14;i++){
+    suit.push("Heart","Diamond","Spade", "Club");
+ }
  
  
-function card (value, cards) {
+function card(value, suit, cards) {
     this.value = value;
+    this.suit = suit;
     this.cards = cards;
 }
 
 for(i=0;i<images.length;i++){
     var v = value[i];
+    var s = suit[i];
     var c = images[i];
-    deck.push(new card(v,c));
+    deck.push(new card(v,s,c));
 
 }
 };
@@ -150,12 +158,9 @@ var dealer = new players("Dealer", 0, []);
 
 players.prototype.deal = function() {
     var num = Math.floor(Math.random() * deck.length);
-       if(deck.length <=4) {
-        create_deck();
-}
     if(deck[num].value == 1) {
         if((21 - this.total) >= 11) {
-            deck[num].value = 11;
+            deck[num].value = 11
         }
 
     }
@@ -177,27 +182,22 @@ players.prototype.deal = function() {
     deck.removeByIndex(num);
     
 };
-
 var start = function() {
     document.getElementById('cards').innerHTML = "";
     document.getElementById('dealer-cards').innerHTML = "";
-    player1.total = 0;
-    dealer.total = 0;
 
- 
+    if(deck.length <=4) {
+        create_deck();
+}
 player1.total = 0;
 dealer.total = 0;
 player1.deal();
 dealer.deal();
 player1.deal();
-document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
 dealer.deal();
-$('#dealer-cards img:nth-child(2)').hide();
-$("<img id='back'>").attr('src', 'black_jack/card_back.jpg').appendTo('#dealer-cards');
-
 document.getElementById("result").innerHTML = "";
 document.getElementById("player1").innerHTML = "Player: " + player1.total;
-
+document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
 document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
 document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
 $(document).ready( function() {
@@ -216,12 +216,13 @@ var dealer_hit = function() {
                     
                 }
                 else if(dealer.total>21){
-                    document.getElementById("dealer").innerHTML = "Dealer: Bust";
+                    
+                    dealer.total = "Bust";
                     return dealer.total;
                     
                 }
                 else{
-                    document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
+                    
                     return dealer.total;
                     }
                 }
@@ -233,8 +234,9 @@ var hit = function() {
        player1.deal();
   
             if(player1.total>21) {
-                document.getElementById("player1").innerHTML = "Player: Bust";
-                document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
+                player1.total = "Bust";
+                document.getElementById("player1").innerHTML = "Player: " + player1.total;
+                console.log("bust");
                 end();
                 return player1.total;
             }
@@ -244,6 +246,7 @@ var hit = function() {
 var stay = function() {
     document.getElementById("player1").innerHTML = "Player: " + player1.total;
     dealer_hit();
+    document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
     end();
     return player1.total;
 };
@@ -256,13 +259,10 @@ $(document).ready( function() {
     $('#stay').unbind('click', stay);
 });
 
-$("#back").remove();
-$('#dealer-cards img:nth-child(2)').show();
 
+console.log("You scored a "+player1.total+" and the dealer scored a "+ dealer.total);
 
-
-
-if(dealer.total > player1.total && dealer.total <=21 || player1.total > 21){
+if(dealer.total > player1.total && dealer.total !== "Bust" || player1.total == "Bust"){
 document.getElementById("result").innerHTML = "Dealer wins!";
 dealer.score+=1;
 player1.score-=1;
@@ -270,7 +270,7 @@ document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
 document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
 
 }
-else if(dealer.total < player1.total || dealer.total > 21){
+else if(dealer.total < player1.total || dealer.total == "Bust"){
 document.getElementById("result").innerHTML = "You win!";
 player1.score+=1;
 dealer.score-=1;
@@ -295,7 +295,8 @@ if(dealer.score === 0) {
 
 }
 
-
+player1.total = 0;
+dealer.total = 0;
 
 };
 
