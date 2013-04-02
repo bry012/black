@@ -1,9 +1,10 @@
+/* Black Jack by Bry012*/
 
 var value = [];
 var deck = [];
 var images = [];
 
-
+//card images
 images[0] = "black_jack/a_h.jpg";
 
 images[1] = "black_jack/ace_d.jpg";
@@ -111,23 +112,23 @@ images[51] = "black_jack/k_c.jpg";
 
 /*creating deck*/
 var create_deck = function() {
-for(i=1;i<14;i++){
-    var val = (i<=10)? i : 10;
-    value.push(val,val,val,val);
+    for(i=1;i<14;i++){
+        var val = (i<=10)? i : 10;
+        value.push(val,val,val,val);
+        }
+ 
+ 
+    function card (value, cards) {
+        this.value = value;
+        this.cards = cards;
     }
- 
- 
-function card (value, cards) {
-    this.value = value;
-    this.cards = cards;
-}
 
-for(i=0;i<images.length;i++){
-    var v = value[i];
-    var c = images[i];
-    deck.push(new card(v,c));
+    for(i=0;i<images.length;i++){
+        var v = value[i];
+        var c = images[i];
+        deck.push(new card(v,c));
 
-}
+    }
 };
 
 /*removes card from deck*/
@@ -135,6 +136,8 @@ Array.prototype.removeByIndex = function(index) {
     this.splice(index, 1);
 };
 
+
+//creates player object
 function players(name,total,cards, score) {
     this.name = name;
     this.total = total;
@@ -149,23 +152,28 @@ var dealer = new players("Dealer", 0, []);
 
 
 players.prototype.deal = function() {
+
     var num = Math.floor(Math.random() * deck.length);
-       if(deck.length <=4) {
+
+    if(deck.length <=4) {
         create_deck();
-}
+    }
+
     if(deck[num].value == 1) {
         if((21 - this.total) >= 11) {
             deck[num].value = 11;
         }
 
     }
+
     this.total += deck[num].value;
+
     if(this == player1){
-    $(document).ready(function() {
-            $("<img>").attr('src', deck[num].cards).appendTo('#cards');
-        });
+         $(document).ready(function() {
+                $("<img>").attr('src', deck[num].cards).appendTo('#cards');
+            });
     
-}
+    }
 
     if(this == dealer) {
           $(document).ready(function() {
@@ -174,36 +182,37 @@ players.prototype.deal = function() {
           
           
     }
+
     deck.removeByIndex(num);
     
 };
 
 var start = function() {
+
     document.getElementById('cards').innerHTML = "";
     document.getElementById('dealer-cards').innerHTML = "";
     player1.total = 0;
     dealer.total = 0;
 
- 
-player1.total = 0;
-dealer.total = 0;
-player1.deal();
-dealer.deal();
-player1.deal();
-document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
-dealer.deal();
-$('#dealer-cards img:nth-child(2)').hide();
-$("<img id='back'>").attr('src', 'black_jack/card_back.jpg').appendTo('#dealer-cards');
+    player1.deal();
+    dealer.deal();
+    player1.deal();
+    document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
+    dealer.deal();
 
-document.getElementById("result").innerHTML = "";
-document.getElementById("player1").innerHTML = "Player: " + player1.total;
+    $('#dealer-cards img:nth-child(2)').hide();
+    $("<img id='back'>").attr('src', 'black_jack/card_back.jpg').appendTo('#dealer-cards');
 
-document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
-document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
-$(document).ready( function() {
-    $('#hit').bind('click', hit);
-    $('#stay').bind('click', stay);
-});
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("player1").innerHTML = "Player: " + player1.total;
+
+    document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
+    document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
+    
+    $(document).ready( function() {
+        $('#hit').bind('click', hit);
+        $('#stay').bind('click', stay);
+    });
 
 };
 
@@ -224,7 +233,7 @@ var dealer_hit = function() {
                     document.getElementById("dealer").innerHTML = "Dealer: " + dealer.total;
                     return dealer.total;
                     }
-                }
+        }
 
 };
 
@@ -239,7 +248,7 @@ var hit = function() {
                 return player1.total;
             }
                 document.getElementById("player1").innerHTML = "Player: " + player1.total;
-        };
+};
 
 var stay = function() {
     document.getElementById("player1").innerHTML = "Player: " + player1.total;
@@ -251,49 +260,49 @@ var stay = function() {
 
 
 var end = function() {
-$(document).ready( function() {
-    $('#hit').unbind('click', hit);
-    $('#stay').unbind('click', stay);
-});
+    $(document).ready( function() {
+        $('#hit').unbind('click', hit);
+        $('#stay').unbind('click', stay);
+    });
 
-$("#back").remove();
-$('#dealer-cards img:nth-child(2)').show();
-
-
+    $("#back").remove();
+    $('#dealer-cards img:nth-child(2)').show();
 
 
-if(dealer.total > player1.total && dealer.total <=21 || player1.total > 21){
-document.getElementById("result").innerHTML = "Dealer wins!";
-dealer.score+=1;
-player1.score-=1;
-document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
-document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
+    if(dealer.total > player1.total && dealer.total <=21 || player1.total > 21){
+        document.getElementById("result").innerHTML = "Dealer wins!";
+        dealer.score+=1;
+        player1.score-=1;
+        document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
+        document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
 
-}
-else if(dealer.total < player1.total || dealer.total > 21){
-document.getElementById("result").innerHTML = "You win!";
-player1.score+=1;
-dealer.score-=1;
-document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
-document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
+    }
 
-}
-else{
-  document.getElementById("result").innerHTML = "We Tie";
-}
+    else if(dealer.total < player1.total || dealer.total > 21){
+        document.getElementById("result").innerHTML = "You win!";
+        player1.score+=1;
+        dealer.score-=1;
+        document.getElementById("player_tally").innerHTML = "Player: " + player1.score;
+        document.getElementById("dealer_tally").innerHTML = "Dealer: " + dealer.score;
 
-if(player1.score === 0) {
-    document.getElementById("result").innerHTML = "You have lost the game.";
-    dealer.score = 20;
-    player1.score = 20;
-}
+    }
 
-if(dealer.score === 0) {
-    document.getElementById("result").innerHTML = "You have beat the dealer!";
-    dealer.score = 20;
-    player1.score = 20;
+    else{
+      document.getElementById("result").innerHTML = "We Tie";
+    }
 
-}
+    if(player1.score === 0) {
+        document.getElementById("result").innerHTML = "You have lost the game.";
+        dealer.score = 20;
+        player1.score = 20;
+    }
+
+    if(dealer.score === 0) {
+        document.getElementById("result").innerHTML = "You have beat the dealer!";
+        dealer.score = 20;
+        player1.score = 20;
+
+    }
 
 
 
