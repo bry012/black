@@ -1,10 +1,9 @@
 black
 =====
 
-black jack 
-
 Simple Black Jack game using javascript and the javascript library jquery.
 
+link to working version: http://www.myinterestsyourenjoyment.com/jack.html
 Features
 ========
 Tally: The player and Dealer start out with 20 tokens each. One token is bet by each player each round.
