@@ -3,7 +3,9 @@ body {
 }
 
 
-
+/******************
+*******=banner*****
+******************/
 #banner {
 	background:url(black_jack/sign.jpg);
 	height:142px;
@@ -15,7 +17,12 @@ body {
 	0 0 0 10px rgb(146,26,25);
 }
 
+/******************
+*******=table*****
+******************/
+
 #table {
+	overflow: hidden;
 	margin:auto;
 	width: 1000px;
 	height: 400px;
@@ -29,7 +36,11 @@ body {
 	
 }
 
-#hit, #start, #stay {
+/******************
+*******=buttons*****
+******************/
+
+#hit, #start, #stay, #double, #split, #new_game{
 	width:90%;
 	height:100%;
 	font-size: 20px;
@@ -47,30 +58,69 @@ body {
 
 }
 
-#hit:hover, #start:hover, #stay:hover {
+#hit:hover, #start:hover, #stay:hover,#double:hover,#split:hover, #new_game:hover {
 	background: white;
 	border:3px solid rgb(10,10,10);
 	color:rgb(146,26,25);
 }
 
+/******************
+*******=scores*****
+******************/
+
 #scores {
+	z-index: 2000px;
 	float:right;
-	overflow: hidden;
+	
+	
 	
 
 }
-#scores ul, #misc ul {
+#scores ul{
 	margin:auto;
-	width:200px;
+	width:250px;
+
 
 }
 
-#scores li, #misc li{
+#misc ul {
+	
+	width:70%;
+	margin:auto;
+	text-align: center;
+	border-radius: 10px;
+}
+#misc li {
+	font-weight:bold;
+	display:inline;
+}
+
+#scores li{
 	display: inline;
-	font-size:22px;
 	font-weight:bold;
 }
+
+#player1,#player2,#dealer,#winnings,#amount_bet {
+	font-size:22px;
+	font-family: courier;
+	font-weight:bold;
+	color:white;
+}
+#player2 {
+	margin-bottom:10px;
+}
+
+#winnings, #amount_bet{
+	padding-bottom:5px;
+	margin-left:14%;
+}
+
+
+/******************
+*******=sidebar*****
+******************/
 #sidebar {
+	margin-top: 20px;
 	margin-bottom:50px;
 }
 #sidebar ul {
@@ -87,8 +137,12 @@ body {
 
 }
 
-#dealer-cards, #cards {
-	width:700px;
+/******************
+*******=cards*****
+******************/
+
+#dealer-cards, #cards, #hand2-cards{
+	width:550px;
 	margin-left:30px;
 	margin-right:10px;
 	padding:0px;
@@ -97,18 +151,124 @@ body {
 
 }
 
-#dealer-cards img, #cards img {
-	padding:10px;
+
+
+#dealer-cards img, #cards img, #hand2-cards img{
+	padding: 5px;
 }
+#players_hands {
+	list-style: none;
+}
+
+#players_hands li {
+	display: inline;
+}
+
+
+
+/******************
+*******=misc*****
+******************/
 
 #misc {
 	height: 30px;
+	z-index:10000px;
+	margin:auto;
+	position:relative;
+	top:30%;
 }
 
+/******************
+*******=chips*****
+******************/
+#chips li {
+	display: inline-table;
+}
+
+#red, #white, #blue {
+	width:50px;
+	height:50px;
+	}
+
+
+#red {
+	background-color: #009999;
+}
+
+#white {
+	background-color: black;
+}
+
+#blue {
+	background-color:orange;
+}
+
+#white:hover, #red:hover, #blue:hover {
+	cursor: pointer;
+}
+
+/******************
+*******=result*****
+******************/
+#result, #result2{
+	width:100%;
+	font-size:41px;
+	z-index:1000px;
+	padding:15px;
+	padding-left:0px;
+	margin:auto;
+	display:inline-block;
+	font-family: courier;
+	position: relative;
+	left:12%;
+}
 #result {
-	color: white;
-	text-align: center;
-	position:relative;
-	left: 3.5%;
+	color:white;
+}
+
+#result2 {
+	color: #009999;
+}
+
+div.fish {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+	border: 7px dotted #ccc;
+}
+
+div.fish div {
+	color: rgba(230,230,230,0.9);
+    font-family: Verdana;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.7em;
+}
+
+div.white {
+	background: #333;
+	box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,100,255, 0.2);
+    -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,100,255, 0.2);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,100,255, 0.2);
+    
+}
+
+div.red {
+	background: #333;
+	box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,51, 0.2);
+    -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,51, 0.2);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,51, 0.2);
+    
+}
+
+div.blue {
+	background: white;
+	box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    -moz-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    -webkit-box-shadow: inset 0 0 1px 1px rgba(0,0,0, 0.1), 0 0 5px 1px rgba(90,90,90, 0.1), inset 0 35px 1px rgba(255,255,255, 0.2);
+    
 }
 

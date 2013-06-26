@@ -12,39 +12,55 @@
 
    		<div id="table">
 
-        <div id="misc">
+        
+
+        <div id="scores">
+            <h2>Scores:</h2>
+            <ul>
+                <li id="player1">Player:</li>
+                <br />
+                <li id="player2"></li>
+                <br />
+                <br/>
+                <li id="dealer">Dealer:</li>
+            </ul>
+            
+          <h2>Cash:</h2>
+          <div id="winnings">Player: 0</div>
+          <div id="amount_bet">Bet: 0</div>
+            <ul id="chips">
+             <li><div class="fish white" id="white"><div>1</div></div></li>
+             <li><div class="fish red" id="red"><div>5</div></div></li>
+             <li ><div class="fish blue" id="blue"><div>10</div></div></li>
+           </ul>
+
+           
+        </div>
+
+        <div id="misc" style="z-index:100px;">
           <ul>
             <li id="result"></li>
+            <li id="result2"></li>
             <li id="deck"></li>
           </ul>
         </div>
-
-        <div id="scores">
-          <h2>Scores</h2>
-          <ul>
-              <li id="player1">Player:</li>
-              <br />
-              <li id="dealer">Dealer:</li>
-          </ul>
-          <h2>Tally</h2>
-          <ul>
-            <li id="player_tally">Player: 20</li>
-            <br />
-            <li id="dealer_tally">Dealer: 20</li>
-          </ul>
-        </div>
-
-        <ul id="cards"></ul>
-        <br />
-        <ul id="dealer-cards"></ul>
-
+        <ul id="players_hands">
+          <li><ul id="cards"></ul></li>
+          
+          <li><ul id="hand2-cards"></ul></li>
+          <br>
+          <li><ul id="dealer-cards"></ul></li>
+        </ul>
       </div>
 
       <div id="sidebar">
         <ul>
-          <li><div id="start" onclick="start()">Start Game</div></li>
+          <li><div id="new_game" onclick="new_game()">New Game</div></li>
+          <li><div id="start">Deal</div></li>
           <li><div id="hit">Hit</div></li>
           <li><div id="stay">Stay</div></li>
+          <li><div id="double">Double</div></li>
+          <li><div id= "split">Split</div></li>
         </ul>
       </div>
      
